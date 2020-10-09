@@ -11,9 +11,9 @@ public class Cash {
     private HashSet<HashSet<Integer>> nominalComb = new HashSet<>();
     private HashSet<HashMap<Integer, Integer>> linearComb = new HashSet<>();
 
-    public Cash(Long c, final HashSet<Integer> nominal) {
+    public Cash(Long c, final HashSet<Integer> nominal1) {
         this.sum = c;
-        this.nominals = nominal;
+        this.nominals = nominal1;
     }
 
     //Добавляем комбинации линейную комбинацию номиналов сумма которой равна sum
