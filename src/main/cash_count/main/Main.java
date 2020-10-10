@@ -9,18 +9,26 @@ import java.util.*;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Введите сумму и нажмите enter");
         String sumLine = br.readLine();
         long sum = Long.parseLong(sumLine);
+        if (sum < 0) {
+            throw new IllegalArgumentException("Negative sum");
+        }
         System.out.println("Введите купюры через пробел");
         String nominalsLine = br.readLine();
         String[] nominalStrings = nominalsLine.split(" ");
         HashSet<Integer> nominals;
         nominals = new HashSet<>();
         for (String nominalString : nominalStrings) {
-            nominals.add(Integer.parseInt(nominalString));
+            int i = Integer.parseInt(nominalString);
+
+            if (i < 0 || i > sum) {
+                throw new IllegalArgumentException("Invalid argument");
+            }
+            nominals.add(i);
         }
         System.out.println("Сумма для размена: " + sum);
         System.out.println("Купюры для размена: ");
@@ -31,11 +39,6 @@ public class Main {
         cash.printAllComb();
     }
 
-    protected static void AddValueToVec(Vector<Integer> vec, int value, int q) {
-        for (int i = 0; i < q; ++i) {
-            vec.add(value);
-        }
-    }
 
     public static void findLinearComb(Cash cash, HashSet<Integer> nominals, HashMap<Integer, Integer> linearComb) {
         int n = nominals.size();
@@ -47,7 +50,7 @@ public class Main {
         currentNominals.remove(firstNominal);
         long sum = cash.getSum();
         if (n > 0) {
-            for (int i = 0; i <= k; ++i) {
+            for (int i = 1; i <= k; ++i) {
                 int s = 0;
                 for (Map.Entry<Integer, Integer> entry : linearComb.entrySet()) {
                     s = s + entry.getKey() * entry.getValue();
@@ -57,12 +60,6 @@ public class Main {
                 Tmp.put(firstNominal, i);
                 if (s == sum && !cash.checkLinearComb(Tmp)) {
                     cash.addLinearComb(Tmp);
-                    Vector<Integer> res = new Vector<>();
-                    for (Map.Entry<Integer, Integer> entry : Tmp.entrySet()) {
-                        AddValueToVec(res, entry.getKey(), entry.getValue());
-                    }
-                    Collections.sort(res);
-                    cash.addSucceedComb(res);
                 } else if (s > sum) {
                     break;
                 } else if (!currentNominals.isEmpty()) {
@@ -76,7 +73,7 @@ public class Main {
         HashSet<Integer> allNominals;
         allNominals = cash.getAllNominals();
         HashSet<Integer> nominals;
-        nominals= bills;
+        nominals = bills;
         for (Integer s : allNominals) {
             if (q > 0) {
                 HashSet<Integer> currentNominals;

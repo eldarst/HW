@@ -2,6 +2,7 @@ package cash_count.cash;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Vector;
 
 public class Cash {
@@ -16,15 +17,21 @@ public class Cash {
         this.nominals = nominal1;
     }
 
-    //Добавляем комбинации линейную комбинацию номиналов сумма которой равна sum
-    public void addSucceedComb(final Vector<Integer> new_comb) {
-        succeedLinearComb.add(new_comb);
-    }
 
     public final void printAllComb() {
-        System.out.println("Количество комбинаций: " + succeedLinearComb.size());
-        for (Vector<Integer> vec : succeedLinearComb) {
-            System.out.println(vec);
+        System.out.println("Количество комбинаций: " + linearComb.size());
+        for (HashMap<Integer, Integer> lin : linearComb) {
+            boolean t = true;
+            for (Map.Entry<Integer, Integer> entry : lin.entrySet()) {
+                if(t){
+                    System.out.print(entry.getKey() + "*" + entry.getValue());
+                    t = false;
+                }
+                else {
+                    System.out.print(" + " + entry.getKey() + "*" + entry.getValue());
+                }
+            }
+            System.out.println("=" + sum);
         }
     }
 
