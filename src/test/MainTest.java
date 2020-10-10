@@ -22,5 +22,18 @@ public class MainTest {
         Main.findNominalComb(cash, nominals.size(), empty);
         int result = cash.getLinearComb().size();
         Assertions.assertEquals(3, result);
+        HashSet<HashMap<Long, Integer>> expectedLinearComb = new HashSet<>();
+        HashMap<Long, Integer> linearCombination1 = new HashMap<>();
+        linearCombination1.put((long)1, 5);
+        expectedLinearComb.add(linearCombination1);
+        HashMap<Long, Integer> linearCombination2 = new HashMap<>();
+        linearCombination2.put((long)1,1);
+        linearCombination2.put((long)2,2);
+        expectedLinearComb.add(linearCombination2);
+        HashMap<Long, Integer> linearCombination3 = new HashMap<>();
+        linearCombination3.put((long)1,3);
+        linearCombination3.put((long)2,1);
+        expectedLinearComb.add(linearCombination3);
+        Assertions.assertEquals(expectedLinearComb, cash.getLinearComb());
     }
 }
