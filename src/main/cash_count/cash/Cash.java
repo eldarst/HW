@@ -8,17 +8,17 @@ public class Cash {
     private long sum;
     private HashSet<Long> allNominals;
     private HashSet<HashSet<Long>> nominalComb = new HashSet<>();
-    private HashSet<HashMap<Long, Integer>> linearComb = new HashSet<>();
+    private HashSet<HashMap<Long, Integer>> linearCombOfNominals = new HashSet<>();
 
-    public Cash(Long c, final HashSet<Long> nominal1) {
-        this.sum = c;
-        this.allNominals = nominal1;
+    public Cash(final Long allSum, final HashSet<Long> nominals) {
+        this.sum = allSum;
+        this.allNominals = nominals;
     }
 
 
     public final void printAllComb() {
-        System.out.println("Количество комбинаций: " + linearComb.size());
-        for (HashMap<Long, Integer> lin : linearComb) {
+        System.out.println("Количество комбинаций: " + linearCombOfNominals.size());
+        for (HashMap<Long, Integer> lin : linearCombOfNominals) {
             boolean t = true;
             for (Map.Entry<Long, Integer> entry : lin.entrySet()) {
                 if (t) {
@@ -34,7 +34,7 @@ public class Cash {
 
     //Возвращает все добавленные линейные комбинации
     public HashSet<HashMap<Long, Integer>> getLinearComb() {
-        return linearComb;
+        return linearCombOfNominals;
     }
 
     //Добавляем новую комбинацию номиналов
@@ -66,12 +66,12 @@ public class Cash {
     //Добавляем линейные комбинацию номиналов: [a1 * x1], [a1 *x2, a2 * x3] ...
     // x1,x2,x3... коэффициенты
     public void addLinearComb(final HashMap<Long, Integer> HashMap1) {
-        linearComb.add(HashMap1);
+        linearCombOfNominals.add(HashMap1);
     }
 
     // Проверяем была ли добавлена комбинация в спискок удовлетворяющих лин.комб.
     public boolean checkLinearComb(HashMap<Long, Integer> HashMap1) {
-        if (linearComb.contains(HashMap1)) {
+        if (linearCombOfNominals.contains(HashMap1)) {
             return true;
         } else {
             return false;
