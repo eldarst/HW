@@ -10,6 +10,10 @@ import java.util.HashSet;
 
 public class MainTest {
     @Test
+    public void InputTest() {
+        
+    }
+    @Test
     public void TestMain() {
         long sum = 5;
         HashSet<Long> nominals = new HashSet<>();
