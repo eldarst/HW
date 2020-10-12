@@ -3,17 +3,16 @@ package cash_count.cash;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Vector;
 
 public class Cash {
     private long sum;
-    private HashSet<Long> nominals;
-    private HashSet<HashSet<Long>> nominalComb = new HashSet<>();
-    private HashSet<HashMap<Long, Integer>> linearComb = new HashSet<>();
+    private HashSet<Long> allNominals;
+    private HashSet<HashSet<Long>> nominalComb ;
+    private HashSet<HashMap<Long, Integer>> linearComb;
 
     public Cash(Long c, final HashSet<Long> nominal1) {
         this.sum = c;
-        this.nominals = nominal1;
+        this.allNominals = nominal1;
     }
 
 
@@ -45,7 +44,7 @@ public class Cash {
 
     //Купюры для размена
     public HashSet<Long> getAllNominals() {
-        return nominals;
+        return allNominals;
     }
 
     public long getSum() {
