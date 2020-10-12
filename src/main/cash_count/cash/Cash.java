@@ -38,8 +38,8 @@ public class Cash {
     }
 
     //Добавляем новую комбинацию номиналов
-    public void addNominalComb(final HashSet<Long> comb) {
-        nominalComb.add(comb);
+    public void addNominalComb(final HashSet<Long> currentNominalCombination) {
+        nominalComb.add(currentNominalCombination);
     }
 
     //Купюры для размена
@@ -52,11 +52,11 @@ public class Cash {
     }
 
     //Проверяем была ли добавлена комбинация в список удовлетворяющих номиналов
-    public boolean checkNominalComb(final HashSet<Long> comb) {
+    public boolean checkNominalComb(final HashSet<Long> currentNominalCombination) {
         if(!nominalComb.isEmpty()) {
             return false;
         }
-        else if (nominalComb.contains(comb)) {
+        else if (nominalComb.contains(currentNominalCombination)) {
             return true;
         } else {
             return false;
@@ -65,13 +65,13 @@ public class Cash {
 
     //Добавляем линейные комбинацию номиналов: [a1 * x1], [a1 *x2, a2 * x3] ...
     // x1,x2,x3... коэффициенты
-    public void addLinearComb(final HashMap<Long, Integer> HashMap1) {
-        linearCombOfNominals.add(HashMap1);
+    public void addLinearComb(final HashMap<Long, Integer> currentLinearCombination) {
+        linearCombOfNominals.add(currentLinearCombination);
     }
 
     // Проверяем была ли добавлена комбинация в спискок удовлетворяющих лин.комб.
-    public boolean checkLinearComb(HashMap<Long, Integer> HashMap1) {
-        if (linearCombOfNominals.contains(HashMap1)) {
+    public boolean checkLinearComb(HashMap<Long, Integer> currentLinearCombination) {
+        if (linearCombOfNominals.contains(currentLinearCombination)) {
             return true;
         } else {
             return false;
