@@ -7,8 +7,8 @@ import java.util.Map;
 public class Cash {
     private long sum;
     private HashSet<Long> allNominals;
-    private HashSet<HashSet<Long>> nominalComb ;
-    private HashSet<HashMap<Long, Integer>> linearComb;
+    private HashSet<HashSet<Long>> nominalComb = new HashSet<>();
+    private HashSet<HashMap<Long, Integer>> linearComb = new HashSet<>();
 
     public Cash(Long c, final HashSet<Long> nominal1) {
         this.sum = c;
@@ -53,7 +53,10 @@ public class Cash {
 
     //Проверяем была ли добавлена комбинация в список удовлетворяющих номиналов
     public boolean checkNominalComb(final HashSet<Long> comb) {
-        if (nominalComb.contains(comb)) {
+        if(!nominalComb.isEmpty()) {
+            return false;
+        }
+        else if (nominalComb.contains(comb)) {
             return true;
         } else {
             return false;
