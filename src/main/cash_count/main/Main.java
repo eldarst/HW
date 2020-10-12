@@ -37,8 +37,8 @@ public class Main {
         System.out.println("Купюры для размена: ");
         System.out.println(nominals);
         Cash cash = new Cash(sum, nominals);
-        HashSet<Long> empty = new HashSet<>();
-        findNominalComb(cash, nominals.size(), empty);
+        HashSet<Long> emptyHashSet = new HashSet<>();
+        findNominalComb(cash, nominals.size(), emptyHashSet);
         cash.printAllComb();
     }
 
@@ -54,16 +54,16 @@ public class Main {
         long sum = cash.getSum();
         if (n > 0) {
             for (int i = 1; i <= k; ++i) {
-                long s = 0;
+                long currentSum = 0;
                 for (Map.Entry<Long, Integer> entry : linearComb.entrySet()) {
-                    s = s + entry.getKey() * entry.getValue();
+                    currentSum = currentSum + entry.getKey() * entry.getValue();
                 }
                 HashMap<Long, Integer> Tmp = (HashMap<Long, Integer>) linearComb.clone();
-                s = firstNominal * i + s;
+                currentSum = firstNominal * i + currentSum;
                 Tmp.put(firstNominal, i);
-                if (s == sum && !cash.checkLinearComb(Tmp)) {
+                if (currentSum == sum && !cash.checkLinearComb(Tmp)) {
                     cash.addLinearComb(Tmp);
-                } else if (s > sum) {
+                } else if (currentSum > sum) {
                     break;
                 } else if (!currentNominals.isEmpty()) {
                     findLinearComb(cash, currentNominals, Tmp);
@@ -72,22 +72,22 @@ public class Main {
         }
     }
 
-    public static void findNominalComb(Cash cash, int q, final HashSet<Long> bills) {
+    public static void findNominalComb(Cash cash, int reverseRecursionStep, final HashSet<Long> bills) {
         HashSet<Long> allNominals;
         allNominals = cash.getAllNominals();
-        HashSet<Long> nominals;
-        nominals = bills;
+        HashSet<Long> oldNominals;
+        oldNominals = bills;
         for (Long s : allNominals) {
-            if (q > 0) {
+            if (reverseRecursionStep > 0) {
                 HashSet<Long> currentNominals;
-                currentNominals = (HashSet<Long>) nominals.clone();
+                currentNominals = (HashSet<Long>) oldNominals.clone();
                 currentNominals.add(s);
                 if (!cash.checkNominalComb(currentNominals)) {
                     cash.addNominalComb(currentNominals);
-                    int p = q - 1;
-                    findNominalComb(cash, p, currentNominals);
-                    HashMap<Long, Integer> map = new HashMap<>();
-                    findLinearComb(cash, currentNominals, map);
+                    int nextRecursionStep = reverseRecursionStep - 1;
+                    findNominalComb(cash, nextRecursionStep, currentNominals);
+                    HashMap<Long, Integer> emptyHashMap = new HashMap<>();
+                    findLinearComb(cash, currentNominals, emptyHashMap);
                 }
             }
         }
