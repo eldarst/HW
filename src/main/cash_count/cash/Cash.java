@@ -6,13 +6,13 @@ import java.util.Map;
 
 public class Cash {
     private long sum;
-    private HashSet<Long> allNominals;
-    private HashSet<HashSet<Long>> nominalComb = new HashSet<>();
+    private HashSet<Long> allNominalsList;
+    private HashSet<HashSet<Long>> currentCombinationOfNominals = new HashSet<>();
     private HashSet<HashMap<Long, Integer>> linearCombOfNominals = new HashSet<>();
 
     public Cash(final Long allSum, final HashSet<Long> nominals) {
         this.sum = allSum;
-        this.allNominals = nominals;
+        this.allNominalsList = nominals;
     }
 
 
@@ -39,12 +39,12 @@ public class Cash {
 
     //Добавляем новую комбинацию номиналов
     public void addNominalComb(final HashSet<Long> currentNominalCombination) {
-        nominalComb.add(currentNominalCombination);
+        currentCombinationOfNominals.add(currentNominalCombination);
     }
 
     //Купюры для размена
     public HashSet<Long> getAllNominals() {
-        return allNominals;
+        return allNominalsList;
     }
 
     public long getSum() {
@@ -53,10 +53,10 @@ public class Cash {
 
     //Проверяем была ли добавлена комбинация в список удовлетворяющих номиналов
     public boolean checkNominalComb(final HashSet<Long> currentNominalCombination) {
-        if(!nominalComb.isEmpty()) {
+        if(!currentCombinationOfNominals.isEmpty()) {
             return false;
         }
-        else if (nominalComb.contains(currentNominalCombination)) {
+        else if (currentCombinationOfNominals.contains(currentNominalCombination)) {
             return true;
         } else {
             return false;

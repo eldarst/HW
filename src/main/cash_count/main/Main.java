@@ -23,31 +23,30 @@ public class Main {
         System.out.println("Введите купюры через пробел");
         String nominalsLine = br.readLine();
         String[] nominalStrings = nominalsLine.split(" ");
-        HashSet<Long> nominals;
-        nominals = new HashSet<>();
+        HashSet<Long> allNominals = new HashSet<>();
         for (String nominalString : nominalStrings) {
             long i = Long.parseLong(nominalString);
 
             if (i < 0 || i > sum) {
                 throw new IllegalArgumentException("Invalid argument");
             }
-            nominals.add(i);
+            allNominals.add(i);
         }
         System.out.println("Сумма для размена: " + sum);
         System.out.println("Купюры для размена: ");
-        System.out.println(nominals);
-        Cash cash = new Cash(sum, nominals);
+        System.out.println(allNominals);
+        Cash cash = new Cash(sum, allNominals);
         HashSet<Long> emptyHashSet = new HashSet<>();
-        findNominalComb(cash, nominals.size(), emptyHashSet);
+        findNominalComb(cash, allNominals.size(), emptyHashSet);
         cash.printAllComb();
     }
 
-
-    public static void findLinearComb(Cash cash, HashSet<Long> nominals, HashMap<Long, Integer> linearComb) {
-        int n = nominals.size();
-        HashSet<Long> currentNominals = (HashSet<Long>) nominals.clone();
+//Находим линейные комбинации которые дают сумму, из комбинаций номиналов
+    public static void findLinearComb(Cash cash, HashSet<Long> nominalsCombination, HashMap<Long, Integer> linearComb) {
+        int n = nominalsCombination.size();
+        HashSet<Long> currentNominals = (HashSet<Long>) nominalsCombination.clone();
         long firstNominal;
-        List<Long> list = new ArrayList<>(nominals);
+        List<Long> list = new ArrayList<>(nominalsCombination);
         firstNominal = list.get(0);
         long k = cash.getSum() / firstNominal;
         currentNominals.remove(firstNominal);
@@ -72,11 +71,12 @@ public class Main {
         }
     }
 
-    public static void findNominalComb(Cash cash, int reverseRecursionStep, final HashSet<Long> bills) {
+    //Находим комбинации номиналов: Номиналы = {1, 2, 3} -> комбинации = {1}, {2}, {3}, {1,2}, {1,3}, {1,2,3}
+    public static void findNominalComb(Cash cash, int reverseRecursionStep, final HashSet<Long> nominals) {
         HashSet<Long> allNominals;
         allNominals = cash.getAllNominals();
         HashSet<Long> oldNominals;
-        oldNominals = bills;
+        oldNominals = nominals;
         for (Long s : allNominals) {
             if (reverseRecursionStep > 0) {
                 HashSet<Long> currentNominals;
