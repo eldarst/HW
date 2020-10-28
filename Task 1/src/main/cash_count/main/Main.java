@@ -13,23 +13,9 @@ public class Main {
         System.out.println("Введите сумму и нажмите enter");
         String sumLine = br.readLine();
         Long sum = checkNumberEntering(sumLine);
-        if (sum < 0) {
-            throw new IllegalArgumentException("Value is negative");
-        } else if (sum == 0) {
-            throw new IllegalArgumentException("Value equals to 0");
-        }
         System.out.println("Введите купюры через пробел");
         String nominalsLine = br.readLine();
-        String[] nominalStrings = nominalsLine.split(" ");
-        HashSet<Long> allNominals = new HashSet<>();
-        for (String nominalString : nominalStrings) {
-            long i = Long.parseLong(nominalString);
-
-            if (i < 0 || i > sum) {
-                throw new IllegalArgumentException("Invalid argument");
-            }
-            allNominals.add(i);
-        }
+        HashSet<Long> allNominals = checkNominalEntering(nominalsLine, sum);
         System.out.println("Сумма для размена: " + sum);
         System.out.println("Купюры для размена: ");
         System.out.println(allNominals);
@@ -39,13 +25,32 @@ public class Main {
         cash.printAllComb();
     }
 
-    private static Long checkNumberEntering(String sumLine) throws IOException {
+    public static Long checkNumberEntering(String sumLine) throws IOException {
         try {
             long sum = Long.parseLong(sumLine);
+            if (sum < 0) {
+                throw new IllegalArgumentException("Value is negative");
+            } else if (sum == 0) {
+                throw new IllegalArgumentException("Value equals to 0");
+            }
             return sum;
         } catch (NumberFormatException ex) {
             throw new NumberFormatException("Number was expected");
         }
+    }
+
+    private static HashSet<Long> checkNominalEntering(String nominalsLine, Long sum) throws IOException {
+        String[] nominalStrings = nominalsLine.split(" ");
+        HashSet<Long> allNominals = new HashSet<>();
+        for (String nominalString : nominalStrings) {
+            checkNumberEntering(nominalString);
+            long i = Long.parseLong(nominalString);
+            if (i < 0 || i > sum) {
+                throw new IllegalArgumentException("Invalid argument");
+            }
+            allNominals.add(i);
+        }
+        return allNominals;
     }
 
     //Находим линейные комбинации которые дают сумму, из комбинаций номиналов
