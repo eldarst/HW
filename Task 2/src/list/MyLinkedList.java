@@ -2,7 +2,7 @@ package list;
 
 import java.util.*;
 
-public class MyLinkedList<E> implements List<E>{
+public class MyLinkedList<E> implements List<E> {
     private Node<E> head, tail;
     private static int length = 0;
 
@@ -28,15 +28,16 @@ public class MyLinkedList<E> implements List<E>{
 
     @Override
     public boolean isEmpty() {
-        if (this.length == 0)
+        if (this.length == 0) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
     @Override
     public boolean contains(Object object) {
-        if(length == 0){
+        if (length == 0) {
             throw new EmptyStackException();
         }
         Node current = head;
@@ -51,25 +52,24 @@ public class MyLinkedList<E> implements List<E>{
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public <T> T[] toArray(T[] a) {
-        return null;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public boolean add(E data) {
         if (data == null) {
             throw new NullPointerException("Null values are not permitted");
-        }
-        if (head == null) {
+        } else if (head == null) {
             head = new Node<>();
             head.data = data;
             Node current = head;
@@ -89,37 +89,37 @@ public class MyLinkedList<E> implements List<E>{
 
     @Override
     public boolean remove(Object o) {
-        return false;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public boolean addAll(Collection<? extends E> c) {
-        return false;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends E> c) {
-        return false;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public void clear() {
-
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
@@ -128,8 +128,9 @@ public class MyLinkedList<E> implements List<E>{
         checkIndex(index);
         Node current = head;
         while (current != null) {
-            if (i == index)
+            if (i == index) {
                 return (E) current.data;
+            }
             current = current.next;
             ++i;
         }
@@ -138,7 +139,7 @@ public class MyLinkedList<E> implements List<E>{
 
     @Override
     public E set(int index, E element) {
-        return null;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
@@ -147,7 +148,7 @@ public class MyLinkedList<E> implements List<E>{
         checkIndex(index);
         if (data == null) {
             throw new NullPointerException("Null elements are not permitted");
-        } else if ( head == null) {
+        } else if (head == null) {
             head = new Node<>();
             head.data = data;
             Node current = head;
@@ -233,29 +234,30 @@ public class MyLinkedList<E> implements List<E>{
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public ListIterator<E> listIterator() {
-        return null;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public ListIterator<E> listIterator(int index) {
-        return null;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
-        return null;
+        throw new UnsupportedOperationException("Unsupported method");
     }
-    public void checkIndex(int index){
+
+    public void checkIndex(int index) {
         if (index > this.size()) {
             throw new IndexOutOfBoundsException("Index is greater than list size");
         } else if (index < 0) {

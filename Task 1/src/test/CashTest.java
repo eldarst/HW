@@ -1,5 +1,4 @@
 import cash_count.cash.Cash;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +7,7 @@ import java.util.HashSet;
 
 public class CashTest {
     @Test
-    public void TestCash() {
+    public void testCash() {
         HashSet<Long> testSet = new HashSet<>();
         testSet.add((long) 1);
         Cash cash1 = new Cash((long) 1, testSet);

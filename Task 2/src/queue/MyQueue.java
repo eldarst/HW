@@ -1,10 +1,11 @@
 package queue;
 
-import list.*;
+import list.MyLinkedList;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Queue;
+
 public class MyQueue<E> implements Queue<E> {
     private MyLinkedList<E> queue = new MyLinkedList();
 
@@ -15,89 +16,90 @@ public class MyQueue<E> implements Queue<E> {
 
     @Override
     public boolean isEmpty() {
-        if(queue.isEmpty())
+        if (queue.isEmpty()) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
     @Override
     public boolean contains(Object o) {
-        return false;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public <T> T[] toArray(T[] a) {
-        return null;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public boolean add(E e) {
-        if(queue.add(e)) {
+        if (queue.add(e)) {
             return true;
-        }
-        else
+        } else {
             return false;
+        }
     }
 
     @Override
     public boolean remove(Object o) {
-        return false;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public boolean addAll(Collection<? extends E> c) {
-        return false;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public void clear() {
-
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public boolean offer(E e) {
-        return false;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public E remove() {
-        return null;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public E poll() {
-        return null;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public E element() {
-        return null;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override

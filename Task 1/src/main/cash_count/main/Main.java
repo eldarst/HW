@@ -6,19 +6,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Введите сумму и нажмите enter");
         String sumLine = br.readLine();
-        long sum = Long.parseLong(sumLine);
+        Long sum = checkNumberEntering(sumLine);
         if (sum < 0) {
             throw new IllegalArgumentException("Value is negative");
-        }
-        else if(sum == 0){
-            throw new IllegalArgumentException("Value equals to  0");
+        } else if (sum == 0) {
+            throw new IllegalArgumentException("Value equals to 0");
         }
         System.out.println("Введите купюры через пробел");
         String nominalsLine = br.readLine();
@@ -41,7 +39,16 @@ public class Main {
         cash.printAllComb();
     }
 
-//Находим линейные комбинации которые дают сумму, из комбинаций номиналов
+    private static Long checkNumberEntering(String sumLine) throws IOException {
+        try {
+            long sum = Long.parseLong(sumLine);
+            return sum;
+        } catch (NumberFormatException ex) {
+            throw new NumberFormatException("Number was expected");
+        }
+    }
+
+    //Находим линейные комбинации которые дают сумму, из комбинаций номиналов
     public static void findLinearComb(Cash cash, HashSet<Long> nominalsCombination, HashMap<Long, Integer> linearComb) {
         int n = nominalsCombination.size();
         HashSet<Long> currentNominals = (HashSet<Long>) nominalsCombination.clone();

@@ -4,11 +4,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.EmptyStackException;
-import java.util.List;
 
 public class MyLinkedListTest {
     @Test
-    void TestAddToTail() {
+    void testAddToTail() {
         MyLinkedList<Integer> listOfIntegers = new MyLinkedList<>();
         listOfIntegers.add(99);
         listOfIntegers.add(100);
@@ -18,7 +17,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    void TestAddToTailNull() {
+    void testAddToTailNull() {
         MyLinkedList<String> listOfString = new MyLinkedList<>();
         Assertions.assertThrows(NullPointerException.class, () -> {
             listOfString.add(null);
@@ -26,7 +25,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    void TestContainsByValue() {
+    void testContainsByValue() {
         MyLinkedList<Integer> listOfInteger = new MyLinkedList<>();
         listOfInteger.add(1);
         listOfInteger.add(2);
@@ -35,20 +34,21 @@ public class MyLinkedListTest {
     }
 
     @Test
-    void TestContainsByValueInEmptyList() {
+    void testContainsByValueInEmptyList() {
         MyLinkedList<Integer> listOfInteger = new MyLinkedList<>();
-        Assertions.assertThrows( EmptyStackException.class , () -> {
+        Assertions.assertThrows(EmptyStackException.class, () -> {
             listOfInteger.contains(99);
         });
     }
+
     @Test
-    void TestSizeOfForEmptyList() {
+    void testSizeOfForEmptyList() {
         MyLinkedList<String> listOfStrings = new MyLinkedList<>();
         Assertions.assertEquals(0, listOfStrings.size());
     }
 
     @Test
-    void TestSizeOfForNotEmptyList() {
+    void testSizeOfForNotEmptyList() {
         MyLinkedList<String> listOfStrings = new MyLinkedList<>();
         listOfStrings.add("One");
         listOfStrings.add("Two");
@@ -57,13 +57,13 @@ public class MyLinkedListTest {
     }
 
     @Test
-    void TestIsEmptyForEmptyList() {
+    void testIsEmptyForEmptyList() {
         MyLinkedList<Integer> listOfIntegers = new MyLinkedList<>();
         Assertions.assertEquals(true, listOfIntegers.isEmpty());
     }
 
     @Test
-    void TestIsEmptyForNotEmptyList() {
+    void testIsEmptyForNotEmptyList() {
         MyLinkedList<Integer> listOfInteger = new MyLinkedList<>();
         listOfInteger.add(1);
         listOfInteger.add(2);
@@ -72,8 +72,8 @@ public class MyLinkedListTest {
     }
 
     @Test
-    void TestGetByIndex() {
-        MyLinkedList<String> listOfString= new MyLinkedList<>();
+    void testGetByIndex() {
+        MyLinkedList<String> listOfString = new MyLinkedList<>();
         listOfString.add("One");
         listOfString.add("Two");
         listOfString.add("Three");
@@ -81,7 +81,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    void TestGetByIndexWithTooLargeIndex() {
+    void testGetByIndexWithTooLargeIndex() {
         MyLinkedList<String> listOfString = new MyLinkedList<>();
         listOfString.add("Zero");
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -90,7 +90,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    void TestGetByIndexWithNegativeIndex() {
+    void testGetByIndexWithNegativeIndex() {
         MyLinkedList<String> listOfString = new MyLinkedList<>();
         listOfString.add("Zero");
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -99,7 +99,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    void TestAddByIndex() {
+    void testAddByIndex() {
         MyLinkedList<Integer> list = new MyLinkedList<>();
         list.add(0, 1);
         list.add(1, 2);
@@ -111,7 +111,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    void TestAddByIndexWithNegativeIndex() {
+    void testAddByIndexWithNegativeIndex() {
         MyLinkedList<Integer> listOfInteger = new MyLinkedList<>();
         listOfInteger.add(0, 1);
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -120,7 +120,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    void TestAddByIndexWithTooLargeIndex() {
+    void testAddByIndexWithTooLargeIndex() {
         MyLinkedList<Integer> listOfInteger = new MyLinkedList<>();
         listOfInteger.add(0, 1);
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -129,7 +129,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    void TestAddByIndexAddNull() {
+    void testAddByIndexAddNull() {
         MyLinkedList<Integer> listOfInteger = new MyLinkedList<>();
         Assertions.assertThrows(NullPointerException.class, () -> {
             listOfInteger.add(0, null);
@@ -137,7 +137,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    void TestRemoveByIndex() {
+    void testRemoveByIndex() {
         MyLinkedList<String> listOfString = new MyLinkedList<>();
         listOfString.add("One");
         listOfString.add("Two");
@@ -150,7 +150,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    void TestRemoveByIndexWithTooLargeIndex() {
+    void testRemoveByIndexWithTooLargeIndex() {
         MyLinkedList<String> listOfString = new MyLinkedList<>();
         listOfString.add("Zero");
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -159,7 +159,7 @@ public class MyLinkedListTest {
     }
 
     @Test
-    void TestRemoveByIndexWithNegativeIndex() {
+    void testRemoveByIndexWithNegativeIndex() {
         MyLinkedList<String> listOfString = new MyLinkedList<>();
         listOfString.add("Zero");
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -168,13 +168,12 @@ public class MyLinkedListTest {
     }
 
     @Test
-    void TestRemoveByIndexFromOneElementList() {
+    void testRemoveByIndexFromOneElementList() {
         MyLinkedList<String> listOfString = new MyLinkedList<>();
         listOfString.add("Zero");
         Assertions.assertEquals(listOfString.remove(0), "Zero");
         Assertions.assertEquals(true, listOfString.isEmpty());
     }
-
 
 
 }
