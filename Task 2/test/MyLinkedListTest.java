@@ -12,7 +12,7 @@ public class MyLinkedListTest {
         listOfIntegers.add(99);
         listOfIntegers.add(100);
         listOfIntegers.add(13);
-        Assertions.assertEquals(listOfIntegers.get(0), 99);
+        Assertions.assertEquals(99, listOfIntegers.get(0));
         Assertions.assertEquals(3, listOfIntegers.size());
     }
 
@@ -105,8 +105,8 @@ public class MyLinkedListTest {
         list.add(1, 2);
         list.add(2, 3);
         list.add(2, 4);
-        Assertions.assertEquals(list.get(2), 4);
-        Assertions.assertEquals(list.get(3), 3);
+        Assertions.assertEquals(4, list.get(2));
+        Assertions.assertEquals(3, list.get(3));
         Assertions.assertEquals(4, list.size());
     }
 
@@ -171,7 +171,7 @@ public class MyLinkedListTest {
     void testRemoveByIndexFromOneElementList() {
         MyLinkedList<String> listOfString = new MyLinkedList<>();
         listOfString.add("Zero");
-        Assertions.assertEquals(listOfString.remove(0), "Zero");
+        Assertions.assertEquals("Zero", listOfString.remove(0));
         Assertions.assertEquals(true, listOfString.isEmpty());
     }
 
