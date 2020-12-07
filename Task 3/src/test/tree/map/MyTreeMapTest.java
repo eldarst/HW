@@ -6,50 +6,50 @@ class MyTreeMapTest {
 
     @Test
     void TestPutToEmptyMyTreeMap() {
-        MyTreeMap<Integer, Integer> mTm = new MyTreeMap<>();
-        mTm.put(1, 2);
-        Assertions.assertTrue(mTm.containsKey(1));
+        MyTreeMap<Integer, Integer> tree = new MyTreeMap<>();
+        tree.put(1, 2);
+        Assertions.assertTrue(tree.containsKey(1));
     }
 
     @Test
     void TestPutToNotEmptyMyTreeMap() {
-        MyTreeMap mTm = new MyTreeMap<>();
-        mTm.put(1, 2);
-        mTm.put(13, 2);
-        mTm.put(12, 2);
-        Assertions.assertTrue(mTm.containsKey(12));
+        MyTreeMap tree = new MyTreeMap<>();
+        tree.put(1, 2);
+        tree.put(13, 2);
+        tree.put(12, 2);
+        Assertions.assertTrue(tree.containsKey(12));
     }
 
     @Test
     void TestGetElem() {
-        MyTreeMap mTm = new MyTreeMap<>();
-        mTm.put(1, 2);
-        mTm.put(13, 2);
-        mTm.put(12, 2);
-        Assertions.assertEquals(2, mTm.get(12));
+        MyTreeMap tree = new MyTreeMap<>();
+        tree.put(1, 2);
+        tree.put(13, 2);
+        tree.put(12, 2);
+        Assertions.assertEquals(2, tree.get(12));
     }
 
     @Test
     void TestContainsElem() {
-        MyTreeMap mTm = new MyTreeMap<>();
-        mTm.put(1, 2);
-        mTm.put(13, 2);
-        mTm.put(12, 2);
-        Assertions.assertTrue(mTm.containsKey(12));
+        MyTreeMap tree = new MyTreeMap<>();
+        tree.put(1, 2);
+        tree.put(13, 2);
+        tree.put(12, 2);
+        Assertions.assertTrue(tree.containsKey(12));
     }
 
     @Test
     void TestIsEmptyWithEmptyMap() {
-        MyTreeMap mTm = new MyTreeMap<>();
-        Assertions.assertTrue(mTm.isEmpty());
+        MyTreeMap tree = new MyTreeMap<>();
+        Assertions.assertTrue(tree.isEmpty());
     }
 
     @Test
     void TestIsEmptyWithNotEmptyMap() {
-        MyTreeMap mTm = new MyTreeMap<>();
-        mTm.put(12, 2);
-        Assertions.assertEquals(1, mTm.size());
-        Assertions.assertFalse(mTm.isEmpty());
+        MyTreeMap tree = new MyTreeMap<>();
+        tree.put(12, 2);
+        Assertions.assertEquals(1, tree.size());
+        Assertions.assertFalse(tree.isEmpty());
     }
 
 }
