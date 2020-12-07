@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 class MyTreeMapTest {
 
     @Test
-    void TestPutToEmptyMyTreeMap() {
+    void testPutToEmptyMyTreeMap() {
         MyTreeMap<Integer, Integer> tree = new MyTreeMap<>();
         tree.put(1, 2);
         Assertions.assertTrue(tree.containsKey(1));
     }
 
     @Test
-    void TestPutToNotEmptyMyTreeMap() {
+    void testPutToNotEmptyMyTreeMap() {
         MyTreeMap tree = new MyTreeMap<>();
         tree.put(1, 2);
         tree.put(13, 2);
@@ -21,7 +21,7 @@ class MyTreeMapTest {
     }
 
     @Test
-    void TestGetElem() {
+    void testGetElem() {
         MyTreeMap tree = new MyTreeMap<>();
         tree.put(1, 2);
         tree.put(13, 2);
@@ -30,7 +30,7 @@ class MyTreeMapTest {
     }
 
     @Test
-    void TestContainsElem() {
+    void testContainsElem() {
         MyTreeMap tree = new MyTreeMap<>();
         tree.put(1, 2);
         tree.put(13, 2);
@@ -39,13 +39,13 @@ class MyTreeMapTest {
     }
 
     @Test
-    void TestIsEmptyWithEmptyMap() {
+    void testIsEmptyWithEmptyMap() {
         MyTreeMap tree = new MyTreeMap<>();
         Assertions.assertTrue(tree.isEmpty());
     }
 
     @Test
-    void TestIsEmptyWithNotEmptyMap() {
+    void testIsEmptyWithNotEmptyMap() {
         MyTreeMap tree = new MyTreeMap<>();
         tree.put(12, 2);
         Assertions.assertEquals(1, tree.size());
