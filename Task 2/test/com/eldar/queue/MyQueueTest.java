@@ -1,6 +1,7 @@
+package com.eldar.queue;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import queue.MyQueue;
 
 
 public class MyQueueTest {

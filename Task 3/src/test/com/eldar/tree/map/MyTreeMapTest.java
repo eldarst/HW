@@ -1,4 +1,5 @@
-package tree.map;
+package com.eldar.tree.map;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

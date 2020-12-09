@@ -1,5 +1,7 @@
-import cash_count.cash.Cash;
-import cash_count.main.Main;
+package com.eldar.main;
+
+import com.eldar.cash_count.cash.Cash;
+import com.eldar.cash_count.main.Main;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

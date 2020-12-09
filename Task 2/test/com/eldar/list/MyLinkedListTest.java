@@ -1,5 +1,5 @@
+package com.eldar.list;
 
-import list.MyLinkedList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

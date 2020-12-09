@@ -1,6 +1,6 @@
-package queue;
+package com.eldar.queue;
 
-import list.MyLinkedList;
+import com.eldar.list.MyLinkedList;
 
 import java.util.Collection;
 import java.util.Iterator;

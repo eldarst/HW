@@ -1,4 +1,4 @@
-package list;
+package com.eldar.list;
 
 import java.util.*;
 
@@ -8,7 +8,7 @@ public class MyLinkedList<E> implements List<E> {
 
     public void print() {
         if (length == 0) {
-            System.out.println("Empty list");
+            System.out.println("Empty com.eldar.com.eldar.com.eldar.list");
         } else {
             System.out.println("Size is: " + length);
             Node current = head;
@@ -259,7 +259,7 @@ public class MyLinkedList<E> implements List<E> {
 
     public void checkIndex(int index) {
         if (index > this.size()) {
-            throw new IndexOutOfBoundsException("Index is greater than list size");
+            throw new IndexOutOfBoundsException("Index is greater than com.eldar.com.eldar.com.eldar.list size");
         } else if (index < 0) {
             throw new IndexOutOfBoundsException("Negative index are not supported");
         }

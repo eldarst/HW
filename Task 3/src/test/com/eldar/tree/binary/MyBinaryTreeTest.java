@@ -1,4 +1,4 @@
-package tree.binary;
+package com.eldar.tree.binary;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -7,9 +7,9 @@ import java.util.NoSuchElementException;
 
 public class MyBinaryTreeTest {
 
-// ADD
+    // ADD
     @Test
-    void testAddOneElementToEmptyBinaryTree(){
+    void testAddOneElementToEmptyBinaryTree() {
         MyBinarySearchTree<Integer, String> tree = new MyBinarySearchTree<>();
 
         tree.add(1, "String1");
@@ -20,7 +20,7 @@ public class MyBinaryTreeTest {
     }
 
     @Test
-    void testAddElementToRightOfBinaryTree(){
+    void testAddElementToRightOfBinaryTree() {
         MyBinarySearchTree<Integer, String> tree = new MyBinarySearchTree<>();
 
         tree.add(1, "String1");
@@ -34,7 +34,7 @@ public class MyBinaryTreeTest {
     }
 
     @Test
-    void testAddElementToLeftOfBinaryTree(){
+    void testAddElementToLeftOfBinaryTree() {
         MyBinarySearchTree<Integer, String> tree = new MyBinarySearchTree<>();
 
         tree.add(1, "String1");
@@ -143,7 +143,7 @@ public class MyBinaryTreeTest {
         Assertions.assertFalse(contains);
     }
 
-//Get
+    //Get
     @Test
     void testGetExistingForElement() {
         MyBinarySearchTree<Integer, String> tree = new MyBinarySearchTree<>();
@@ -158,7 +158,7 @@ public class MyBinaryTreeTest {
     void testGetForNotExistingElement() {
         MyBinarySearchTree<Integer, String> tree = new MyBinarySearchTree<>();
         tree.add(1, "One");
-        Assertions.assertThrows(NoSuchElementException.class, ()-> {
+        Assertions.assertThrows(NoSuchElementException.class, () -> {
             tree.get(11);
         });
     }

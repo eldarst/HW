@@ -1,4 +1,4 @@
-package list;
+package com.eldar.list;
 
 class Node<E> {
     Node<E> next;

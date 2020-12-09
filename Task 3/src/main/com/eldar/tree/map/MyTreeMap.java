@@ -1,12 +1,12 @@
-package tree.map;
+package com.eldar.tree.map;
 
-import tree.binary.MyBinarySearchTree;
+import com.eldar.tree.binary.MyBinarySearchTree;
 
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
-public class MyTreeMap<K extends Comparable<K>,V> implements Map<K,V> {
+public class MyTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
 
     MyBinarySearchTree<K, V> tree = new MyBinarySearchTree<>();
     private int size = 0;
@@ -30,7 +30,6 @@ public class MyTreeMap<K extends Comparable<K>,V> implements Map<K,V> {
     public V get(Object key) {
         return tree.get((K) key);
     }
-
 
 
     @Override

@@ -1,4 +1,4 @@
-package tree.binary;
+package com.eldar.tree.binary;
 
 
 import java.util.Comparator;

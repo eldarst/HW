@@ -1,4 +1,4 @@
-package cash_count.cash;
+package com.eldar.cash_count.cash;
 
 import java.util.HashMap;
 import java.util.HashSet;

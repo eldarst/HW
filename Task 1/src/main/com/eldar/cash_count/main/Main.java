@@ -1,6 +1,6 @@
-package cash_count.main;
+package com.eldar.cash_count.main;
 
-import cash_count.cash.Cash;
+import com.eldar.cash_count.cash.Cash;
 
 import java.io.BufferedReader;
 import java.io.IOException;
