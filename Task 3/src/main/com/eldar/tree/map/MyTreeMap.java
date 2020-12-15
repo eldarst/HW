@@ -53,31 +53,31 @@ public class MyTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
 
     @Override
     public boolean containsValue(Object value) {
-        return false;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public void putAll(Map<? extends K, ? extends V> m) {
-
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public void clear() {
-
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public Set<K> keySet() {
-        return null;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public Collection<V> values() {
-        return null;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 
     @Override
     public Set<Entry<K, V>> entrySet() {
-        return null;
+        throw new UnsupportedOperationException("Unsupported method");
     }
 }
