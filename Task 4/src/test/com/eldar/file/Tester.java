@@ -9,18 +9,19 @@ import java.io.IOException;
 
 class Tester {
 
-    static public boolean deleteDirectory(File path) {
-        if (path.exists()) {
-            File[] files = path.listFiles();
-            for (int i = 0; i < files.length; i++) {
-                if (files[i].isDirectory()) {
-                    deleteDirectory(files[i]);
+    static public boolean delDirectory(File dir) {
+        if (dir.exists()) {
+            String[] allFiles = dir.list();
+            for (String f: allFiles) {
+                File file = new File(f);
+                if (file.isDirectory()) {
+                    delDirectory(file);
                 } else {
-                    files[i].delete();
+                    file.delete();
                 }
             }
         }
-        return (path.delete());
+        return (dir.delete());
     }
 
 
@@ -40,12 +41,12 @@ class Tester {
         File outFile = new File(outputPath);
         outFile.createNewFile();
         FileManager reader = new FileManager(outputPath, new File("./DIRECTORY"));
-        String result = ";C:\\Users\\GOSH\\IdeaProjects\\Task 4\\DIRECTORY\\FILE1.txt\n" +
-                ";C:\\Users\\GOSH\\IdeaProjects\\Task 4\\DIRECTORY\\FILE2.txt\n" +
-                ";C:\\Users\\GOSH\\IdeaProjects\\Task 4\\DIRECTORY\\FOLDER\n" +
-                ";C:\\Users\\GOSH\\IdeaProjects\\Task 4\\DIRECTORY\\output.txt\n";
+        String result = ";C:\\Users\\GOSH\\IdeaProjects\\project_1\\DIRECTORY\\FILE1.txt\n" +
+                ";C:\\Users\\GOSH\\IdeaProjects\\project_1\\DIRECTORY\\FILE2.txt\n" +
+                ";C:\\Users\\GOSH\\IdeaProjects\\project_1\\DIRECTORY\\FOLDER\n" +
+                ";C:\\Users\\GOSH\\IdeaProjects\\project_1\\DIRECTORY\\output.txt\n";
         Assertions.assertEquals(result, reader.output);
-        //deleteDirectory(directory);
+        delDirectory(directory);
     }
 
     @Test
