@@ -1,30 +1,32 @@
 package com.eldar.file;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FileManager {
 
-    public static String output = new String();
-
     public FileManager(String out, File dir) throws IOException {
-        try {
-            if (!dir.getCanonicalFile().exists()) {
-                throw new NullPointerException("Your directory is wrong!");
-            }
-            getAllFromDirectory(dir);
-            printToFile(new File(out));
-        } catch (Exception ex) {
-            throw ex;
+        if(!dir.exists()) {
+            throw new FileNotFoundException("Directory is not found!");
+        } else if(!(new File(out).getCanonicalFile().exists())) {
+            throw new FileNotFoundException("File is not found!");
         }
+        scanAndWrite(dir, out);
+
     }
 
 
-    private static void getAllFromDirectory(File dir) throws IOException {
-        try {
+    private static void scanAndWrite(File dir, String output) {
+
+        Logger log = Logger.getLogger(FileManager.class.getName());
+        try(FileOutputStream out = new FileOutputStream(output,true)) {
             File directory = dir.getCanonicalFile();
             String[] allFiles = directory.list();
 
@@ -33,29 +35,20 @@ public class FileManager {
                     String path = dir + File.separator + file;
                     File currentFile = new File(path).getCanonicalFile();
                     if (currentFile.isDirectory()) {
-                        output = output + File.pathSeparator + currentFile + "\n";
-                        getAllFromDirectory(currentFile.getCanonicalFile());
+                        byte[] buffer = (currentFile + "\n").getBytes();
+                        out.write(buffer);
+                        scanAndWrite(currentFile.getCanonicalFile(), output);
                     } else if (currentFile.isFile()) {
-                        output = output + File.pathSeparator + currentFile + "\n";
-                    }
+                        byte[] buffer = (currentFile + "\n").getBytes();
+                        out.write(buffer);
+                        }
                 }
+            } else {
+                log.info( dir + " is empty");
             }
-        } catch (Exception er) {
-            throw er;
-        }
+        } catch (Exception ex) {
 
-
-    }
-
-
-    public void printToFile(File dir) {
-        try {
-            if (!dir.getCanonicalFile().exists()) {
-                throw new RuntimeException("You are trying to write on non existent file!");
-            }
-            Files.write(Paths.get(dir.getCanonicalPath()), output.getBytes(), StandardOpenOption.APPEND);
-        } catch (IOException e) {
-            e.getCause();
+            throw new RuntimeException();
         }
 
 

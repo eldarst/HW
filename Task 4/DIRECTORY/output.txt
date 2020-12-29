@@ -1,4 +1,0 @@
-;C:\Users\GOSH\IdeaProjects\Task 4\DIRECTORY\FILE1.txt
-;C:\Users\GOSH\IdeaProjects\Task 4\DIRECTORY\FILE2.txt
-;C:\Users\GOSH\IdeaProjects\Task 4\DIRECTORY\FOLDER
-;C:\Users\GOSH\IdeaProjects\Task 4\DIRECTORY\output.txt

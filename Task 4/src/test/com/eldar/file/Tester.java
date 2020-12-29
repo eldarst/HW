@@ -4,16 +4,51 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 
 class Tester {
 
-    static public boolean delDirectory(File dir) {
+    @Test
+    void testWithAddedFiles() throws IOException {
+        List<String> space = createDirectoryWithFiles();
+        File directory = new File(space.get(0));
+        String outputPath = space.get(1);
+        new FileManager(outputPath, directory);
+        String result = directory.getCanonicalPath() + "\\FILE1.txt\n" +
+                directory.getCanonicalFile() + "\\FILE2.txt\n" +
+                directory.getCanonicalFile() + "\\FOLDER\n" +
+                directory.getCanonicalFile() + "\\output.txt\n";
+        FileInputStream fin = new FileInputStream(outputPath);
+        String realRes = new String();
+        int i = -1;
+        while ((i = fin.read()) != -1) {
+            realRes = realRes + (char) i;
+        }
+        Assertions.assertEquals(result, realRes);
+    }
+
+    @Test
+    void testNullDirectory() throws IOException {
+        createDirectoryWithFiles();
+        Assertions.assertThrows(FileNotFoundException.class, () -> new FileManager("./DIRECTORY/NULL/output.txt", new File("./DIRECTORY/NULL")));
+    }
+
+    @Test
+    void testNullFile() throws IOException {
+        createDirectoryWithFiles();
+        Assertions.assertThrows(FileNotFoundException.class, () -> new FileManager("./DIRECTORY/FOLDER/file.txt", new File("./DIRECTORY/FOLDER")));
+    }
+
+
+    static public boolean delDirectory(File dir) throws IOException {
         if (dir.exists()) {
-            String[] allFiles = dir.list();
-            for (String f: allFiles) {
-                File file = new File(f);
+            File[] allFiles = dir.listFiles();
+            for (File file : allFiles) {
                 if (file.isDirectory()) {
                     delDirectory(file);
                 } else {
@@ -25,10 +60,14 @@ class Tester {
     }
 
 
-    @Test
-    void testWithAddedFile() throws IOException {
+    private List<String> createDirectoryWithFiles() throws IOException {
         File directory = new File("./DIRECTORY").getCanonicalFile();
+        if(directory.exists()){
+            delDirectory(directory);
+        }
         directory.mkdir();
+        List<String> res = new LinkedList<>();
+        res.add(directory.getName());
         for (int i = 1; i < 3; ++i) {
             String newPath = "./DIRECTORY/FILE" + i + ".txt";
             File newFile = new File(newPath);
@@ -38,28 +77,10 @@ class Tester {
         File newDir = new File(newPath);
         newDir.mkdir();
         String outputPath = "./DIRECTORY/output.txt";
+        res.add(outputPath);
         File outFile = new File(outputPath);
         outFile.createNewFile();
-        FileManager reader = new FileManager(outputPath, new File("./DIRECTORY"));
-        String result = ";C:\\Users\\GOSH\\IdeaProjects\\project_1\\DIRECTORY\\FILE1.txt\n" +
-                ";C:\\Users\\GOSH\\IdeaProjects\\project_1\\DIRECTORY\\FILE2.txt\n" +
-                ";C:\\Users\\GOSH\\IdeaProjects\\project_1\\DIRECTORY\\FOLDER\n" +
-                ";C:\\Users\\GOSH\\IdeaProjects\\project_1\\DIRECTORY\\output.txt\n";
-        Assertions.assertEquals(result, reader.output);
-        delDirectory(directory);
+        return res;
     }
-
-    @Test
-    void testNullDirectory() {
-        Assertions.assertThrows(NullPointerException.class, () -> new FileManager("./DIRECTORY/NULL/output.txt", new File("./DIRECTORY/NULL")));
-    }
-
-    @Test
-    void testNullFile() {
-        String dirPath1 = "./DIRECTORY/FOLDER";
-        File dirPath = new File(dirPath1);
-        Assertions.assertThrows(RuntimeException.class, () -> new FileManager("./DIRECTORY/FILE/file.txt", new File("./DIRECTORY/FOLDER")));
-    }
-
 
 }
