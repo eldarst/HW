@@ -76,7 +76,7 @@ public class Solver implements Runnable {
             double x1 = -(double) b / (2 * a);
             return String.format("%f" + '\n', x1);
         } else {
-            return "D<0" + '\n';
+            return "D < 0" + '\n';
         }
     }
 }

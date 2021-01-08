@@ -32,6 +32,9 @@ public class ResourcesPool<T> {
     }
 
     public int getPoolSize() {
+        if(this.isTerminated) {
+            throw new IllegalStateException("Pool is already terminated!");
+        }
         return poolSize;
     }
 
@@ -71,7 +74,7 @@ public class ResourcesPool<T> {
     }
 
     public void shutdown() throws InterruptedException {
-        isTerminated = true;
+        this.isTerminated = true;
         stop(executor);
     }
 

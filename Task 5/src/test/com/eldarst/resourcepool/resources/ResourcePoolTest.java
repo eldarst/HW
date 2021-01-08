@@ -1,5 +1,6 @@
 package com.eldarst.resourcepool.resources;
 
+import com.eldarst.resourcepool.calculation.Solver;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -7,7 +8,17 @@ import org.mockito.Mockito;
 import java.io.File;
 import java.io.IOException;
 
+import static java.lang.StrictMath.sqrt;
+
 public class ResourcePoolTest {
+    @Test
+    public void testGetRoots() {
+        double a = 1, b = 4, c = 1;
+        double discriminant = sqrt(b * b - 4 * a * c);
+        double x1 = (-b + discriminant) / (2 * a);
+        double x2 = (-b - discriminant) / (2 * a);
+        Assertions.assertEquals(String.format("%f, %f", x1, x2), Solver.getRoots(a, b, c));
+    }
     @Test
     void testPoolInitialization() throws IOException {
         ResourcesPool<Thread> threadPool = new ResourcesPool<>(new ThreadFactory(), 1000, Runtime.getRuntime().availableProcessors());
@@ -19,10 +30,17 @@ public class ResourcePoolTest {
 
     @Test
     void testReleaseResource() {
-        ResourcesPool<Thread> pool = Mockito.mock(ResourcesPool.class);
+        ResourcesPool<Thread> threadPool = Mockito.mock(ResourcesPool.class);
         Thread thread = new Thread();
-        pool.releaseResource(thread);
-        Mockito.verify(pool, Mockito.times(1)).releaseResource(thread);
+        threadPool.releaseResource(thread);
+        Mockito.verify(threadPool, Mockito.times(1)).releaseResource(thread);
+    }
+
+    @Test
+    void testShutdown() throws InterruptedException {
+        ResourcesPool<Thread> threadPool = Mockito.mock(ResourcesPool.class);
+        threadPool.shutdown();
+        Mockito.verify(threadPool, Mockito.times(1)).shutdown();
     }
 
     @Test
