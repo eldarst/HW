@@ -31,8 +31,11 @@ public class ResourcesPool<T> {
         setPool();
     }
 
+    public int getPoolSize() {
+        return poolSize;
+    }
 
-    public T getResource() {
+    public T getResource() throws InterruptedException {
         if (!this.isTerminated) {
             try {
                 Resource<T> resource = this.resourcePool.take();
@@ -45,17 +48,25 @@ public class ResourcesPool<T> {
                     this.workingResources.offer(newResource);
                 }
             } catch (InterruptedException | IOException ex) {
-                ex.printStackTrace();
+                throw new InterruptedException();
             }
+        }
+        else {
+            throw new IllegalStateException("Pool is already terminated");
         }
         return null;
     }
 
     public void releaseResource(T value) {
-        if (value != null || !this.isTerminated) {
+        if ( !this.isTerminated) {
             this.workingResources.remove(value);
             long now = System.currentTimeMillis();
             this.resourcePool.offer(new Resource<>(now, value));
+        } else {
+            if(value == null) {
+                throw new IllegalArgumentException("Value is NULL");
+            }
+            throw new IllegalStateException("Pool is already terminated");
         }
     }
 

@@ -26,7 +26,13 @@ public class Solver implements Runnable {
 
     @Override
     public void run() {
-        File file = filePool.getResource();
+        File file = null;
+        try {
+            file = filePool.getResource();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         try (FileWriter writer = new FileWriter(file,true)) {
 
             for (int i = 0; i < a.length; i++) {
@@ -41,7 +47,7 @@ public class Solver implements Runnable {
         }
     }
 
-    public void execute(Runnable runnable) {
+    public void execute(Runnable runnable) throws InterruptedException {
         Thread worker = threadPool.getResource();
         try {
             runnable.run();

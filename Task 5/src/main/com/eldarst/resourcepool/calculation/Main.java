@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException, InterruptedException {
         int poolSize = Runtime.getRuntime().availableProcessors();
         int maxWaitingTime = 1000;
         double[] a = new double[10000];
